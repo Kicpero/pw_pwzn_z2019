@@ -12,10 +12,26 @@ dwuelementową tuplę zawierającą liczbę poprawnych wierszy:
 import re
 
 
+def check_existence(pattern, line):
+    return bool(re.fullmatch(pattern, line))
+
+
 def check_animal_list(file_path):
-    pass
+    with open(file_path) as _input:
+        lines = _input.readlines()
+    f_count = 0
+    m_count = 0
+
+    f = r'^[a-fA-F\d]{8}\-[a-fA-F\d]{4}\-[a-fA-F\d]{4}\-[a-fA-F\d]{4}\-[a-fA-F\d]{12}_F_[\d]\.[\d]{3}e[\-\+][\d]{2}$'
+    m = r'^[a-fA-F\d]{8}\-[a-fA-F\d]{4}\-[a-fA-F\d]{4}\-[a-fA-F\d]{4}\-[a-fA-F\d]{12}_M_[\d]\.[\d]{3}e[\-\+][\d]{2}$'
+
+    for line in lines:
+        line = line.strip()
+        m_count += check_existence(m, line)
+        f_count += check_existence(f, line)
+    return f_count, m_count
 
 
 if __name__ == '__main__':
     assert check_animal_list('s_animals_sce.txt') == (2, 2)
-    assert check_animal_list('animals_sc_corrupted.txt') == (6, 0)
+    assert check_animal_list('animals_sc_corrupted.txt') == (5, 1)
