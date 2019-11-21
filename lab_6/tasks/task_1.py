@@ -44,7 +44,7 @@ def select_animals(inputPath, outputPath, compressed=False):
         df['mass'] = mass[0].astype('float')
         df['unit'] = mass[1]
 
-        units = {'kg': 1, 'g': 1e-3, 'mg': 1e-6, 'Mg': 1e3}
+        units = {'Mg': 1e3, 'kg': 1, 'g': 1e-3, 'mg': 1e-6}
         for unit, scientificNotation in units.items():
             df.loc[df.unit == unit, 'mass'] = df['mass'] * scientificNotation
             df.loc[df.unit == unit, 'scientificNotation'] = scientificNotation
