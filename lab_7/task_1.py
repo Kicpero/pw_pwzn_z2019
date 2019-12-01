@@ -18,7 +18,20 @@ def least_sq(xy):
     :type xy: np.ndarray
     :return: Tuple of fitted parameters
     """
-    pass
+
+    N = xy.shape[1] #returnuje liczbe wierszy shape[0] zreturnowałoby liczbe kolumn
+    x = xy[0] #pierwsza kolumna to x
+    y = xy[1] #druga kolumna to y
+    x_sum = x.sum() #liczymy sumę x'ów
+    x2_sum = (x ** 2).sum() #liczymy sumę kwadratów x'ów
+    y_sum = y.sum() #liczymy sumę y'ów
+    xy_sum = (x * y).sum() #liczymy sumę x*y
+
+    Delta = N * x2_sum - x_sum ** 2
+    A = (x2_sum * y_sum - x_sum * xy_sum) / Delta
+    B = (N * xy_sum - x_sum * y_sum) / Delta
+
+    return A, B
 
 
 if __name__ == '__main__':
@@ -222,4 +235,4 @@ if __name__ == '__main__':
                         98.00343145869182,
                         98.9982680433363,
                         100.00083927400149]])
-    np.testing.assert_allclose(least_sq(points), (1, -1), atol=0.1)
+    np.testing.assert_allclose(least_sq(points), (1,1), atol=0.1)

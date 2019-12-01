@@ -16,7 +16,13 @@ def estimate_pi(n):
     :return: Estimated Pi value
     :rtype: float
     """
-    pass
+    x = np.random.rand(n) * 2 - 1 #losujemy liczbę z przedziału -1 do 1 dla x
+    y = np.random.rand(n) * 2 - 1 #losujemy liczbę z przedziału -1 do 1 dla y
+    r = x ** 2 + y ** 2
+    r = r ** 0.5
+    k = (r <= 1).sum()
+    pi = 4 * k / n
+    return pi
 
 
 if __name__ == '__main__':
