@@ -26,14 +26,14 @@ def calculate_neighbours(board):
     :param periodic
     """
     neighbours = np.zeros(board.shape, int)
-    neighbours[:, :-1] += board[:, 1:]  # sąsiedzi na prawo
-    neighbours[:, 1:] += board[:, :-1]  # sasiedzi na lewo
-    neighbours[:-1, :] += board[1:, :]  # sasiedzi na dole
-    neighbours[1:, :] += board[:-1, :]  # sasiedzi na górze
+    neighbours[:, 1:] += board[:, :-1]  # sasiedzi na lewo, bez pierwszej kolumny bo tam nie ma na lewo
+    neighbours[:, :-1] += board[:, 1:]  # sąsiedzi na prawo, bez ostatniej kolumny bo tam nie ma na prawo
+    neighbours[:-1, :] += board[1:, :]  # sasiedzi na dole, bez ostatniego wiersza bo tam nie ma na dół
+    neighbours[1:, :] += board[:-1, :]  # sasiedzi na górze, bez pierwszego wiersza bo tam nie ma na góry
     neighbours[:-1, :-1] += board[1:, 1:]  # sasiedzi skos dół-prawo
-    neighbours[1:, 1:] += board[:-1, :-1]  # sasiedzi skos góra-lewo
     neighbours[:-1, 1:] += board[1:, :-1]  # sasiedzi skos dół-lewo
     neighbours[1:, :-1] += board[:-1, 1:]  # sasiedzi skos góra-prawo
+    neighbours[1:, 1:] += board[:-1, :-1]  # sasiedzi skos góra-lewo
     return neighbours
 
 
