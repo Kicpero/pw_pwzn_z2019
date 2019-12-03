@@ -235,4 +235,4 @@ if __name__ == '__main__':
                         98.00343145869182,
                         98.9982680433363,
                         100.00083927400149]])
-    np.testing.assert_allclose(least_sq(points), (1,1), atol=0.1)
+    np.testing.assert_allclose(least_sq(points), (1, 1), atol=0.1)
