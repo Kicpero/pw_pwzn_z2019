@@ -24,7 +24,6 @@ parts/
 sdist/
 var/
 wheels/
-lab_7/lab7/*
 *.egg-info/
 .installed.cfg
 *.egg
