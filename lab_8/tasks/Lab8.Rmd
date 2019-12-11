@@ -1,0 +1,39 @@
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+from tools.fit_funcs import least_sq
+```
+
+```{python}
+data = np.genfromtxt('data/input01.txt', delimiter=',')[1::] 
+coefficients = least_sq(data[:,0:2])
+
+y_error = abs(data[:,2]/data[:,1])
+
+data_big_accuracy = (data[y_error < 0.05])
+xy_big_accuracy = data_big_accuracy[:,0:2]
+
+coefficients_big_accuracy = least_sq(xy_big_accuracy)
+
+x = np.linspace(-3,7)
+fitted_line = coefficients[0]*x + coefficients[1]
+fitted_line_2 = coefficients_big_accuracy[0]*x + coefficients_big_accuracy[1]
+```
+
+```{python}
+fig = plt.figure()
+plt.plot(x, fitted_line, '--' ,label="all", linewidth=0.5)
+plt.plot(x, fitted_line_2, 'g--', label = '$\Delta$ < 5%', linewidth=0.5)
+plt.errorbar(data[:,0],data[:,1], yerr = data[:,2], color="red", marker="^", markersize=1,fmt=' ')
+plt.errorbar(data_big_accuracy[:,0],data_big_accuracy[:,1], yerr = data_big_accuracy[:,2], color="black", marker='s', markersize=1,fmt=' ')
+plt.legend(loc=2)
+plt.show()
+```
+
+```{python}
+fig.savefig("lab8.png", dpi = 200)
+```
+
+```{python}
+
+```
