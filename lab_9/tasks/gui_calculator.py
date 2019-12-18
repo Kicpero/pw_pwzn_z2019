@@ -146,7 +146,6 @@ class CalculatorGUI(tk.Frame):
     def memorize(self, *args):
         state = self.state.get()
         if state:
-            print(self.screen['text'])
             self.calculator._short_memory = self.variables['var_1'] or self.screen['text']
             self.calculator.memorize()
         else:
