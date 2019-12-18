@@ -84,6 +84,10 @@ class Calculator:
         """Prints memorized value."""
         print(f"Zapamiętana wartość: {self.memory}")
 
+    @property
+    def short_memory(self):
+        return self._short_memory
+
 
 if __name__ == '__main__':
     b = None
