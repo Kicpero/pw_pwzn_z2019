@@ -27,6 +27,7 @@ def get_cities_woeid(query, timeout=5.):
     location_url = urljoin(API_URL, 'location/search')
     query = dict(query=query)
     content = get_metaweather(location_url, query, timeout)
+    print(content)
     return {
         elem['title']: elem['woeid']
         for elem in content
@@ -43,3 +44,6 @@ if __name__ == '__main__':
         get_cities_woeid('Warszawa', 0.1)
     except Exception as exc:
         isinstance(exc, requests.exceptions.Timeout)
+
+
+

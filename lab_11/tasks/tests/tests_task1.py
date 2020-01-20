@@ -18,7 +18,7 @@ test_parameter_exception = [
     ('/', 5, 0, CalculatorError),
     ('/', 6, 'abc', NotNumberArgument),
     ('*', 'abcd', 10, NotNumberArgument),
-    ('^', 2, 1, WrongOperation),
+    ('#', 2, 1, WrongOperation),
 
 ]
 
